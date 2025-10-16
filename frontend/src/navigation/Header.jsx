@@ -27,7 +27,7 @@ const Header = () => {
   }, []);
   
   return (
-    <div className={`fixed w-full top-0 ${isBg && 'bg-[var(--light-primary-color)]'}`}>
+    <div className={`fixed z-20 w-full top-0 ${isBg && 'bg-[var(--light-primary-color)]'}`}>
       <div className="">
         <div className="container mx-auto">
           <div className="flex justify-between items-center w-full px-3">
