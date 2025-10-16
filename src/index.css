@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+*{
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+@font-face {
+  font-family: "BLTHeirloom-Bold";
+  src: url("/assets/font/Heirloom/BLTHeirloom-Bold.otf") format("opentype");
+  font-weight: bolder;
+}
+:root{
+  --primary-color: #ffeeee;
+  --light-primary-color: #F1E5D8;
+  --text-color: #1C1C1C;
+  --brown-color: #444444;
+  --black-color: #000000;
+  --white-color: #ffffff;
+  --btn-text-color: #F6EBDD;
+  --newFont: "BLTHeirloom-Bold";
+}
+a{
+  text-decoration: none;
+}
+li{
+  list-style-type: none;
+}
+
+body, html{
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  background-color: var(--primary-color);
+}
+
+h1 {
+  font-family: var(--newFont), sans-serif;
+}
