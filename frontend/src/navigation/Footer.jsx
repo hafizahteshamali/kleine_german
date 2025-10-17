@@ -93,69 +93,50 @@ const Footer = () => {
 
       {/* Bottom gradient section */}
       <section className="border-l-20 border-[#F0E4D6] w-[98%] bg-[#F0E4D6] rounded-tr-2xl">
-        <div className="h-full w-full rounded-t-2xl bg-[#F26454] px-4 pb-6 pt-6 text-white md:px-8">
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-3">
-            {/* Column 1 */}
-            <div className="rounded-2xl border border-[var(--footer-glass-border)] bg-[var(--footer-glass)] p-5 backdrop-blur">
-              <h3 className="text-lg font-medium">Index</h3>
-              <ul className="mt-3 space-y-2 text-sm/6 text-white/90">
-                <li>
-                  <a href="#" className="hover:underline">
-                    Startseite
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:underline">
-                    Unsere Arbeit
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:underline">
-                    Über uns
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:underline">
-                    Kontakt
-                  </a>
-                </li>
-              </ul>
-            </div>
+  <div className="h-full w-full rounded-t-2xl bg-[#F26454] px-4 text-white md:px-8 py-5 lg:py-0">
+    <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-3">
+      
+      {/* ---------- Column 1 ---------- */}
+      <div className="border-2 border-[var(--footer-glass-border)] bg-[var(--footer-glass)] rounded-2xl p-5 backdrop-blur 
+                      lg:rounded-none lg:border-r-2 lg:border-t-0 lg:border-b-0 lg:border-l-0">
+        <h3 className="text-lg font-medium">Index</h3>
+        <ul className="mt-3 space-y-2 text-sm/6 text-white/90">
+          <li><a href="#" className="hover:underline">Startseite</a></li>
+          <li><a href="#" className="hover:underline">Unsere Arbeit</a></li>
+          <li><a href="#" className="hover:underline">Über uns</a></li>
+          <li><a href="#" className="hover:underline">Kontakt</a></li>
+        </ul>
+      </div>
 
-            {/* Column 2 */}
-            <div className="rounded-2xl border border-[var(--footer-glass-border)] bg-[var(--footer-glass)] p-5 backdrop-blur">
-              <h3 className="text-lg font-medium">Legal</h3>
-              <ul className="mt-3 space-y-2 text-sm/6 text-white/90">
-                <li>
-                  <a href="#" className="hover:underline">
-                    Impressum
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:underline">
-                    Datenschutz
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:underline">
-                    AGB
-                  </a>
-                </li>
-              </ul>
-            </div>
+      {/* ---------- Column 2 ---------- */}
+      <div className="border-2 border-[var(--footer-glass-border)] bg-[var(--footer-glass)] rounded-2xl p-5 backdrop-blur 
+                      lg:rounded-none lg:border-r-2 lg:border-t-0 lg:border-b-0 lg:border-l-0">
+        <h3 className="text-lg font-medium">Legal</h3>
+        <ul className="mt-3 space-y-2 text-sm/6 text-white/90">
+          <li><a href="#" className="hover:underline">Impressum</a></li>
+          <li><a href="#" className="hover:underline">Datenschutz</a></li>
+          <li><a href="#" className="hover:underline">AGB</a></li>
+        </ul>
+      </div>
 
-            {/* Column 3 */}
-            <div className="flex flex-col justify-between rounded-2xl border border-[var(--footer-glass-border)] bg-[var(--footer-glass)] p-5 backdrop-blur">
-              <h3 className="text-lg font-medium">Urheberrechte</h3>
-              <div className="mt-3 flex-1 text-sm/6 text-white/90">
-                {/* Intentionally minimal list to mirror the provided reference */}
-                <p className="opacity-80">Inhalte können urheberrechtlich geschützt sein.</p>
-              </div>
-              <p className="mt-4 text-right text-xs/5 text-white/70">© 2025 IncSolution Entwickelt mit Klarheit.</p>
-            </div>
-          </div>
+      {/* ---------- Column 3 ---------- */}
+      <div className="border-2 border-[var(--footer-glass-border)] bg-[var(--footer-glass)] rounded-2xl p-5 backdrop-blur 
+                      lg:border-0 lg:rounded-none flex flex-col justify-between">
+        <h3 className="text-lg font-medium">Urheberrechte</h3>
+        <div className="mt-3 flex-1 text-sm/6 text-white/90">
+          <p className="opacity-80">
+            Inhalte können urheberrechtlich geschützt sein.
+          </p>
         </div>
-      </section>
+        <p className="mt-4 text-left text-[16px] text-white/70">
+          © 2025 IncSolution Entwickelt mit Klarheit.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
     </footer>
   )
 }

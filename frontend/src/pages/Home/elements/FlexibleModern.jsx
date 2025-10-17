@@ -15,11 +15,11 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
                                 className="h-[100px] w-[100px] object-contain hidden lg:block"
                                 alt=""
                             />
-                            <h1 className="text-3xl text-center sm:text-5xl md:text-7xl lg:text-7xl text-[#FFEEEE] uppercase">{head1}</h1>
+                            <h1 className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl text-[#FFEEEE] uppercase">{head1}</h1>
                         </div>
 
                         <div className="flex justify-center items-center lg:rotate-[.5deg] lg:origin-right">
-                            <h1 className="text-3xl text-center sm:text-5xl md:text-7xl lg:text-7xl  text-[#FFEEEE] uppercase">{head2}</h1>
+                            <h1 className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl  text-[#FFEEEE] uppercase">{head2}</h1>
                         </div>
                         <div className="flex justify-center items-center lg:rotate-[1deg] lg:origin-right">
                             <img
@@ -27,7 +27,7 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
                                 className="h-[60px] w-[60px] object-contain hidden lg:block"
                                 alt=""
                             />
-                            <h1 className="text-3xl text-center sm:text-5xl md:text-7xl lg:text-7xl  text-[#FFEEEE] uppercase">{head3}</h1>
+                            <h1 className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl  text-[#FFEEEE] uppercase">{head3}</h1>
                             <img
                                 src="/assets/images/home/red-start.png"
                                 className="h-[100px] w-[100px] object-contain hidden lg:block"

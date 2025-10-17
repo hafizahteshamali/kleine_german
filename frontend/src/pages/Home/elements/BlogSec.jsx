@@ -83,7 +83,7 @@ function ProcessRow({ title, description, imgUrl }) {
   
               <div className="mt-8 flex justify-center">
                 <button
-                  className="rounded-full bg-[#F26454] min-w-[20%] py-2 text-[16px] font-medium text-white hover:bg-rose-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-rose-500"
+                  className="rounded-full bg-[#F26454] w-full lg:w-[20%] py-2 text-[16px] font-medium text-white hover:bg-rose-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-rose-500"
                   type="button"
                   aria-label="Mehr lesen"
                 >

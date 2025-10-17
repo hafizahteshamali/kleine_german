@@ -12,9 +12,9 @@ export const navigationData = [
 ]
 
 export const homeBannerData ={
-    imgUrl: "/assets/images/home/banner-img.png",
+    imgUrl: "/assets/images/home/animated_character.gif",
     heading1: "ARBEITEN",
-    heading2: "MIT DER",
+    heading2: "MIT: DIE",
     heading3: "KLEINE",
     heading4: "AGENTUR",
     question: "Haben Sie bereits eine Website?",
