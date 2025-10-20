@@ -81,7 +81,7 @@ const Creat_Effic_Effici = ({ processSteps }) => {
 
             <div className=" w-full mt-[50px]">
                 <div className="container mx-auto">
-                    <div className="w-[95%] mx-auto lg:mx-0 lg:w-[50%] flex flex-col justify-center items-start gap-5">
+                    <div className="w-[95%] mx-auto lg:mx-5 lg:w-[50%] flex flex-col justify-center items-start gap-5">
                         <p className="text-[var(--text-color)] font-[500]">{subTitle}</p>
                         <h2 className="text-2xl font-[700] leading-9">{text1}</h2>
                         <div>
