@@ -124,9 +124,11 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
                                 data-aos="fade-up"
                                 data-aos-delay="800"
                                 data-aos-once="false"
+                                data-aos-easing="ease-out-cubic"
+                                data-aos-duration="600"
                             >
                                 <div
-                                    className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[-3deg] md:translate-y-1"
+                                    className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[-3deg] transition-all duration-700 animate-float"
                                     style={{ backgroundColor: "#FFECEE" }}
                                 >
                                     <div className="text-center flex flex-col justify-around h-full items-center">
@@ -153,9 +155,11 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
                                 data-aos="fade-up"
                                 data-aos-delay="900"
                                 data-aos-once="false"
+                                data-aos-easing="ease-out-cubic"
+                                data-aos-duration="600"
                             >
                                 <div
-                                    className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[2deg] md:-translate-y-1"
+                                    className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[2deg] transition-all duration-700 animate-float"
                                     style={{ backgroundColor: "#EDE4D6" }}
                                 >
                                     <div className="text-center flex flex-col justify-around h-full">
@@ -182,9 +186,11 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
                                 data-aos="fade-up"
                                 data-aos-delay="1000"
                                 data-aos-once="false"
+                                data-aos-easing="ease-out-cubic"
+                                data-aos-duration="600"
                             >
                                 <div
-                                    className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[-1.5deg] md:translate-y-2"
+                                    className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[-1.5deg] transition-all duration-700 animate-float"
                                     style={{ backgroundColor: "#FFE8F0" }}
                                 >
                                     <div className="text-center flex flex-col justify-around h-full">
@@ -211,9 +217,11 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
                                 data-aos="fade-up"
                                 data-aos-delay="1100"
                                 data-aos-once="false"
+                                data-aos-easing="ease-out-cubic"
+                                data-aos-duration="600"
                             >
                                 <div
-                                    className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[3deg] md:-translate-y-2"
+                                    className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[3deg] transition-all duration-700 animate-float"
                                     style={{ backgroundColor: "#E9E0CF" }}
                                 >
                                     <div className="text-center flex flex-col justify-around h-full">
@@ -329,6 +337,21 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
             >
                 <img src="/assets/images/home/banner.jpg" className="h-[100%] w-[100%] lg:object-contain" alt="" />
             </div>
+
+            {/* Custom CSS for floating animation */}
+            <style jsx>{`
+                @keyframes float {
+                    0%, 100% {
+                        transform: translateY(0) rotate(var(--rotation, 0deg));
+                    }
+                    50% {
+                        transform: translateY(-10px) rotate(var(--rotation, 0deg));
+                    }
+                }
+                .animate-float {
+                    animation: float 3s ease-in-out infinite;
+                }
+            `}</style>
         </>
     )
 }

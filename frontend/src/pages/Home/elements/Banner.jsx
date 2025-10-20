@@ -204,7 +204,7 @@ const Banner = ({ homeBannerData, homeMainHeading }) => {
             </div>
             
             <h1 
-              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl lg:rotate-[-2deg]"
+              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl lg:rotate-[-1deg]"
               data-aos="zoom-in"
               data-aos-delay="700"
               data-aos-once="false"
