@@ -7,7 +7,7 @@ export const navigationData = [
     {
         text: "About Us",
         icon: "/assets/images/home/nav-icon.png",
-        link: "/"
+        link: "/about-us"
     }
 ]
 
@@ -52,4 +52,16 @@ export const processSteps = {
     text1: "Schritt für Schritt, Recherche zuerst, Templates nie. Jede Aufgabe beginnt mit einer sauberen Analyse von Zielgruppe, Markt und technischen Rahmenbedingungen. Darauf bauen Hypothesen, Prototypen und nutzergetestete Konzepte auf. Keine Copy-Paste-Vorlagen: wir reduzieren Risiko, erhöhen Relevanz und liefern langfristig wirkende Ergebnisse.",
     text2: "Microcopy",
     text3: "Keine Pakete. Individueller Umfang. Klare Zeitpläne."
+}
+
+//About us 
+
+export const AboutBannerData = {
+    heading1: "Find",
+    heading2: "deine",
+    heading3: "Richtung",
+    imgUrl: "/assets/images/about/about-banner.gif",
+    description: "Jede Organisation ist anders. Wir helfen Teams und Gründer:innen, die passende Markenidentität, Web-Erfahrung, Content- und Growth-Lösungen zu finden, zugeschnitten auf Ziele, Stärken und Arbeitsweise, damit Ideen zu bleibenden Ergebnissen werden.",
+    btn1Text: "Erfahren Sie mehr",
+    btn2Text: "Nehmen Sie Kontakt auf"
 }
