@@ -65,3 +65,16 @@ export const AboutBannerData = {
     btn1Text: "Erfahren Sie mehr",
     btn2Text: "Nehmen Sie Kontakt auf"
 }
+
+export const SecondBannerData = {
+    profile: "/assets/images/about/owner.jpg",
+    ownerName: "Haider Khan",
+    firstText: "Geschäftsführer einer",
+    secondText: "kleinen Agentur",
+    heading1: "Wir sind",
+    heading2: "eine engagierte",
+    heading3: "kleine Agentur,",
+    heading4: "handeln schnell, denken tief und",
+    heading5: "liefern Arbeit, der Kunden vollständig",
+    heading6: "vertrauen und die sie schätzen.",
+}

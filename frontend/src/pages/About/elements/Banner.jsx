@@ -26,7 +26,7 @@ const Banner = ({ AboutBannerData }) => {
             </div>
   
             {/* Second Headings - Left & Right Tilt */}
-            <div className="w-full flex justify-center gap-2 sm:gap-3 items-center">
+            <div className="w-full flex justify-center gap-2 sm:gap-3 items-center ">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[var(--text-color)] uppercase -rotate-2 sm:-rotate-3 lg:-rotate-4">
                 {heading2}
               </h1>
@@ -36,7 +36,7 @@ const Banner = ({ AboutBannerData }) => {
             </div>
 
             {/* Content Section */}
-            <div className="w-full lg:w-[90%] xl:w-[75%] mx-auto flex flex-col lg:flex-row justify-center items-center lg:items-end mt-6 sm:mt-8 lg:mt-10">
+            <div className="w-full lg:w-[90%] xl:w-[75%] mx-auto flex flex-col lg:flex-row justify-center items-center lg:items-end mt-6 sm:mt-8 lg:mt-0">
               {/* Image */}
               <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
                 <img 
