@@ -12,7 +12,7 @@ const Projects = () => {
   )
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-100 to-pink-50 p-6">
+    <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header with Search and Filter */}
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -23,10 +23,10 @@ const Projects = () => {
               placeholder="Filter Unternehmen"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-13 pr-4 py-3 rounded-full bg-[#1E1E1E] text-white placeholder-white border border-gray-700 focus:outline-none focus:border-blue-500"
+              className="w-full pl-13 pr-4 py-3 rounded-full bg-[#1E1E1E] text-white placeholder-white border border-gray-700 focus:outline-none focus:border-white"
             />
           </div>
-          <button className="px-6 py-3 bg-[#1E1E1E] text-white rounded-full font-medium hover:bg-[#1E1E1E] transition-colors whitespace-nowrap">
+          <button className="px-6 py-3 bg-[#1E1E1E] text-white rounded-full font-medium hover:bg-[#424242] transition-colors whitespace-nowrap">
             Companies
           </button>
         </div>
@@ -40,7 +40,7 @@ const Projects = () => {
                   key={project.id}
                   className="w-full sm:w-1/2 lg:w-1/4"
                 >
-                  <div className="aspect-square border-y border-l border-[#FFEEEE] flex flex-col items-center justify-center p-4 hover:bg-[#1E1E1E] transition-colors cursor-pointer group">
+                  <div className="aspect-square border-y border-l border-[#FFEEEE] flex flex-col items-center justify-center p-4 hover:bg-[#424242] transition-colors cursor-pointer group">
                     <img 
                       src={project.img} 
                       alt={project.name}

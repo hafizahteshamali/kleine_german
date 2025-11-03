@@ -29,7 +29,7 @@ const Footer = () => {
                     <input
                       type="text"
                       placeholder="Name"
-                      className="w-full rounded-full border-0 bg-muted px-4 py-2 text-sm text-[var(--color-primary)] placeholder:text-[#FFEEEE] outline-none bg-[#BCAE9F]"
+                      className="w-full rounded-full border-0 bg-muted px-4 py-2 text-sm text-white placeholder:text-[#FFEEEE] outline-none bg-[#BCAE9F]"
                     />
                   </label>
                   <label className="block">
@@ -37,7 +37,7 @@ const Footer = () => {
                     <input
                       type="email"
                       placeholder="E‑Mail"
-                      className="w-full rounded-full border-0 bg-muted px-4 py-2 text-sm text-[var(--color-primary)] placeholder:text-[#FFEEEE] outline-none bg-[#BCAE9F]"
+                      className="w-full rounded-full border-0 bg-muted px-4 py-2 text-sm text-white placeholder:text-[#FFEEEE] outline-none bg-[#BCAE9F]"
                     />
                   </label>
                 </div>
@@ -47,7 +47,7 @@ const Footer = () => {
                   <input
                     type="text"
                     placeholder="Firma (optional)"
-                    className="w-full rounded-full border-0 bg-muted px-4 py-2 text-sm text-[var(--color-primary)] placeholder:text-[#FFEEEE] outline-none bg-[#BCAE9F]"
+                    className="w-full rounded-full border-0 bg-muted px-4 py-2 text-sm text-white placeholder:text-[#FFEEEE] outline-none bg-[#BCAE9F]"
                   />
                 </label>
 
@@ -56,7 +56,7 @@ const Footer = () => {
                   <textarea
                     rows={4}
                     placeholder="Nachricht"
-                    className="w-full resize-none rounded-xl border-0 bg-muted px-4 py-3 text-sm text-[var(--color-primary)] placeholder:text-[#FFEEEE] outline-none bg-[#BCAE9F]"
+                    className="w-full resize-none rounded-xl border-0 bg-muted px-4 py-3 text-sm text-white placeholder:text-[#FFEEEE] outline-none bg-[#BCAE9F]"
                   />
                 </label>
 

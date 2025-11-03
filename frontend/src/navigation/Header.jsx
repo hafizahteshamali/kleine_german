@@ -43,7 +43,7 @@ const Header = () => {
                       className="flex justify-center items-center gap-2.5 text-[var(--text-color)] font-[500]"
                     >
                       <span>{nav.text}</span>
-                      <img src={nav.icon} alt="" />
+                      <img src={nav.icon} className="h-6 w-6 object-contain" alt="" />
                     </NavLink>
                   </li>
                 );
@@ -56,8 +56,8 @@ const Header = () => {
 
             <Button
               className="py-1 hidden lg:flex px-3 bg-[var(--text-color)] text-[var(--btn-text-color)] rounded-full"
-              text="Get in touch"
-              img="/assets/images/home/touch-img.png"
+              text="Nehmen Sie Kontakt auf"
+              img="/assets/images/home/button-img.svg"
             />
             <IoMenu
               onClick={() => setOpenModal(!openModal)}
@@ -77,7 +77,9 @@ const Header = () => {
         <ul className="flex flex-col justify-center items-center gap-5 mt-[100px]">
           {navigationData.map((nav, index) => {
             return (
-              <li key={index} className="bg-[#c9b9a9] py-1 px-3 rounded-full">
+              <li
+              onClick={() => setOpenModal(false)} 
+              key={index} className="bg-[#c9b9a9] py-1 px-3 rounded-full">
                 <NavLink
                   to={nav.link}
                   className="flex justify-center items-center gap-2.5 text-[var(--text-color)] font-[500]"

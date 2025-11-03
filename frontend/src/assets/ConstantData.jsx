@@ -1,12 +1,12 @@
 export const navigationData = [
   {
-    text: "Companies",
-    icon: "/assets/images/home/nav-icon.png",
+    text: "Unternehmen",
+    icon: "/assets/images/home/nav-icon1.svg",
     link: "/companies",
   },
   {
-    text: "About Us",
-    icon: "/assets/images/home/nav-icon.png",
+    text: "Über uns",
+    icon: "/assets/images/home/nav-icon2.svg",
     link: "/about-us",
   },
 ];
