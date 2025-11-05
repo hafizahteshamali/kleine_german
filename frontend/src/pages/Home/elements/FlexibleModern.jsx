@@ -1,359 +1,422 @@
-import React, { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+"use client"
+
+import { useRef, useEffect, useState } from "react"
+import { motion } from "framer-motion"
 
 const FlexibleModern = ({ flexibleModern, flexModernData }) => {
-    const { head1, head2, head3 } = flexibleModern
-    const { h_1, h_2, h_3, description, bullets, imgUrl } = flexModernData;
+  const { head1, head2, head3 } = flexibleModern
+  const { h_1, h_2, h_3, description, bullets, imgUrl } = flexModernData
 
-    useEffect(() => {
-        AOS.init({
-            duration: 800,
-            easing: "ease-out-cubic",
-            once: false,
-            offset: 50,
-            mirror: true,
-        });
-    }, []);
+  const sectionRef = useRef(null)
+  const nightGrosRef = useRef(null)
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const [nightGrosProgress, setNightGrosProgress] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
 
-    // Refresh AOS on component update
-    useEffect(() => {
-        AOS.refresh();
-    });
+  useEffect(() => {
+    // Check if mobile on mount and resize
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768) // md breakpoint
+    }
 
-    return (
-        <>
-            {/* card banner section */}
-            <div 
-                className="bg-[var(--text-color)] rounded-4xl mt-[100px] p-5"
-                data-aos="fade-up"
-                data-aos-delay="100"
-                data-aos-once="false"
-                data-aos-duration="800"
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return
+
+      const sectionTop = sectionRef.current.getBoundingClientRect().top
+      const sectionHeight = sectionRef.current.getBoundingClientRect().height
+      const windowHeight = window.innerHeight
+
+      // Calculate scroll progress (0-100%)
+      const progress = Math.max(0, Math.min(100, ((windowHeight - sectionTop) / (windowHeight + sectionHeight)) * 100))
+
+      setScrollProgress(progress)
+    }
+
+    // Night Gros section scroll progress
+    const handleNightGrosScroll = () => {
+      if (!nightGrosRef.current) return
+
+      const sectionTop = nightGrosRef.current.getBoundingClientRect().top
+      const sectionHeight = nightGrosRef.current.getBoundingClientRect().height
+      const windowHeight = window.innerHeight
+
+      // Calculate scroll progress for Night Gros section (0-100%)
+      const progress = Math.max(0, Math.min(100, ((windowHeight - sectionTop) / (windowHeight + sectionHeight)) * 100))
+
+      setNightGrosProgress(progress)
+    }
+
+    const combinedScrollHandler = () => {
+      handleScroll()
+      handleNightGrosScroll()
+    }
+
+    window.addEventListener("scroll", combinedScrollHandler)
+    // Initial check
+    combinedScrollHandler()
+
+    return () => window.removeEventListener("scroll", combinedScrollHandler)
+  }, [])
+
+  // Different thresholds for mobile and desktop
+  const shouldAnimate = (desktopThreshold, mobileThreshold = null) => {
+    const threshold = isMobile && mobileThreshold !== null ? mobileThreshold : desktopThreshold
+    return scrollProgress >= threshold
+  }
+
+  // Night Gros section animation triggers - Different for mobile and desktop
+  const shouldShowText = isMobile ? nightGrosProgress >= 20 : nightGrosProgress >= 40
+  const shouldShowImage = isMobile ? nightGrosProgress >= 30 : nightGrosProgress >= 50
+
+  const getProgress = (startThreshold, endThreshold) => {
+    if (scrollProgress < startThreshold) return 0
+    if (scrollProgress > endThreshold) return 1
+    return (scrollProgress - startThreshold) / (endThreshold - startThreshold)
+  }
+
+  return (
+    <>
+      {/* card banner section */}
+      <div ref={sectionRef} className="bg-[var(--text-color)] rounded-4xl mt-[100px] p-5">
+        <div className="container mx-auto h-auto">
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-t from-[#ff6b6b] to-[var(--text-color)] rounded-4xl pointer-events-none"
+            initial={{ scaleY: 0, originY: 1 }}
+            animate={{
+              scaleY: shouldAnimate(30, 20) ? 1 : 0,
+              originY: 1,
+            }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: -1,
+            }}
+          />
+
+          {/* heading section */}
+          <div className="w-full mt-[100px] flex flex-col justify-center gap-2 items-center relative z-10">
+            <p className="text-center text-[#FFEEEE] font-[600]">Dienstleistungen</p>
+
+            <motion.div
+              className="flex justify-center items-end lg:rotate-[1deg] lg:origin-right"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{
+                opacity: shouldAnimate(20, 15) ? 1 : 0,
+                x: shouldAnimate(20, 15) ? 0 : -50,
+              }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
             >
-                <div className="container mx-auto h-auto">
-                    {/* heading section */}
-                    <div className="w-full mt-[100px] flex flex-col justify-center gap-2 items-center">
-                        <p 
-                            className="text-center text-[#FFEEEE] font-[600]"
-                            data-aos="fade-up"
-                            data-aos-delay="200"
-                            data-aos-once="false"
-                        >
-                            Dienstleistungen
-                        </p>
-                        <div 
-                            className="flex justify-center items-end lg:rotate-[1deg] lg:origin-right"
-                            data-aos="fade-up"
-                            data-aos-delay="300"
-                            data-aos-once="false"
-                        >
-                            <img
-                                src="/assets/images/home/flexible-head1-l-img.png"
-                                className="h-[100px] w-[100px] object-contain hidden lg:block"
-                                alt=""
-                                data-aos="zoom-in"
-                                data-aos-delay="350"
-                                data-aos-once="false"
-                            />
-                            <h1 
-                                className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl text-[#FFEEEE] uppercase"
-                                data-aos="fade-up"
-                                data-aos-delay="400"
-                                data-aos-once="false"
-                            >
-                                {head1}
-                            </h1>
-                        </div>
+              <img
+                src="/assets/images/home/flexible-head1-l-img.png"
+                className="h-[100px] w-[100px] object-contain hidden lg:block"
+                alt=""
+              />
+              <h1 className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl text-[#FFEEEE] uppercase">
+                {head1}
+              </h1>
+            </motion.div>
 
-                        <div 
-                            className="flex justify-center items-center lg:rotate-[.5deg] lg:origin-right"
-                            data-aos="fade-up"
-                            data-aos-delay="500"
-                            data-aos-once="false"
-                        >
-                            <h1 
-                                className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl  text-[#FFEEEE] uppercase"
-                                data-aos="fade-up"
-                                data-aos-delay="550"
-                                data-aos-once="false"
-                            >
-                                {head2}
-                            </h1>
-                        </div>
-                        <div 
-                            className="flex justify-center items-center lg:rotate-[1deg] lg:origin-right"
-                            data-aos="fade-up"
-                            data-aos-delay="600"
-                            data-aos-once="false"
-                        >
-                            <img
-                                src="/assets/images/home/ellips.png"
-                                className="h-[60px] w-[60px] object-contain hidden lg:block"
-                                alt=""
-                                data-aos="zoom-in"
-                                data-aos-delay="650"
-                                data-aos-once="false"
-                            />
-                            <h1 
-                                className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl  text-[#FFEEEE] uppercase"
-                                data-aos="fade-up"
-                                data-aos-delay="700"
-                                data-aos-once="false"
-                            >
-                                {head3}
-                            </h1>
-                            <img
-                                src="/assets/images/home/red-start.png"
-                                className="h-[100px] w-[100px] object-contain hidden lg:block"
-                                alt=""
-                                data-aos="zoom-in"
-                                data-aos-delay="750"
-                                data-aos-once="false"
-                            />
-                        </div>
-                    </div>
-                    {/* heading section */}
+            <motion.div
+              className="flex justify-center items-center lg:rotate-[.5deg] lg:origin-right"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{
+                opacity: shouldAnimate(30, 20) ? 1 : 0,
+                x: shouldAnimate(30, 20) ? 0 : -50,
+              }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <h1 className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl text-[#FFEEEE] uppercase">
+                {head2}
+              </h1>
+            </motion.div>
 
-                    {/* cards section */}
-                    <section className="mt-10 md:my-14">
-                        <div className="mx-auto flex flex-wrap md:flex-row items-stretch justify-center gap-6 md:gap-8 lg:gap-4">
-                            {/* Card 01 */}
-                            <article 
-                                className="w-full md:w-[260px] lg:w-[290px] min-h-[350px] shrink-0"
-                                data-aos="fade-up"
-                                data-aos-delay="800"
-                                data-aos-once="false"
-                                data-aos-easing="ease-out-cubic"
-                                data-aos-duration="600"
-                            >
-                                <div
-                                    className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[-3deg] transition-all duration-700 animate-float"
-                                    style={{ backgroundColor: "#FFECEE" }}
-                                >
-                                    <div className="text-center flex flex-col justify-around h-full items-center">
-                                        <p className="text-[16px] tracking-widest font-semibold uppercase mb-2">01</p>
-                                        <h3 className="text-xl md:text-2xl font-extrabold uppercase leading-tight">Markenidentität</h3>
-                                        <img 
-                                            src="/assets/images/home/bulb.png" 
-                                            alt="Icon" 
-                                            className="mx-auto my-3 h-15 w-15" 
-                                            data-aos="zoom-in"
-                                            data-aos-delay="850"
-                                            data-aos-once="false"
-                                        />
-                                        <p className="font-[500] leading-relaxed">
-                                            Wir helfen Marken dabei, ihre Stimme und visuelle Elemente zu finden, die wirklich Bestand haben.
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
+            <motion.div
+              className="flex justify-center items-center lg:rotate-[1deg] lg:origin-right"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{
+                opacity: shouldAnimate(40, 25) ? 1 : 0,
+                x: shouldAnimate(40, 25) ? 0 : -50,
+              }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <img
+                src="/assets/images/home/ellips.png"
+                className="h-[60px] w-[60px] object-contain hidden lg:block"
+                alt=""
+              />
+              <h1 className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl text-[#FFEEEE] uppercase">
+                {head3}
+              </h1>
+              <img
+                src="/assets/images/home/red-start.png"
+                className="h-[100px] w-[100px] object-contain hidden lg:block"
+                alt=""
+              />
+            </motion.div>
+          </div>
+          {/* heading section */}
 
-                            {/* Card 02 */}
-                            <article 
-                                className="w-full md:w-[260px] lg:w-[290px] min-h-[350px] shrink-0"
-                                data-aos="fade-up"
-                                data-aos-delay="900"
-                                data-aos-once="false"
-                                data-aos-easing="ease-out-cubic"
-                                data-aos-duration="600"
-                            >
-                                <div
-                                    className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[2deg] transition-all duration-700 animate-float"
-                                    style={{ backgroundColor: "#EDE4D6" }}
-                                >
-                                    <div className="text-center flex flex-col justify-around h-full">
-                                        <p className="text-[16px] tracking-widest font-semibold uppercase mb-2">02</p>
-                                        <h3 className="text-xl md:text-2xl font-extrabold uppercase leading-tight">Web-Erlebnis</h3>
-                                        <img 
-                                            src="/assets/images/home/Web-Erlebnis.png" 
-                                            alt="Icon" 
-                                            className="mx-auto my-3 h-15 w-15" 
-                                            data-aos="zoom-in"
-                                            data-aos-delay="950"
-                                            data-aos-once="false"
-                                        />
-                                        <p className="font-[500] leading-relaxed">
-                                            Schnelle und ansprechende Websites erstellen, die Menschen zum Handeln bewegen.
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-
-                            {/* Card 03 */}
-                            <article 
-                                className="w-full md:w-[260px] lg:w-[290px] min-h-[350px] shrink-0"
-                                data-aos="fade-up"
-                                data-aos-delay="1000"
-                                data-aos-once="false"
-                                data-aos-easing="ease-out-cubic"
-                                data-aos-duration="600"
-                            >
-                                <div
-                                    className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[-1.5deg] transition-all duration-700 animate-float"
-                                    style={{ backgroundColor: "#FFE8F0" }}
-                                >
-                                    <div className="text-center flex flex-col justify-around h-full">
-                                        <p className="text-[16px] tracking-widest font-semibold uppercase mb-2">03</p>
-                                        <h3 className="text-xl md:text-2xl font-extrabold uppercase leading-tight">Inhalt &amp; Bewegung</h3>
-                                        <img 
-                                            src="/assets/images/home/diamond.png" 
-                                            alt="Icon" 
-                                            className="mx-auto my-3 h-15 w-15" 
-                                            data-aos="zoom-in"
-                                            data-aos-delay="1050"
-                                            data-aos-once="false"
-                                        />
-                                        <p className="font-[500] leading-relaxed">
-                                            Geschichten schaffen, die verbinden, inspirieren und in Erinnerung bleiben.
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-
-                            {/* Card 04 */}
-                            <article 
-                                className="w-full md:w-[260px] lg:w-[290px] min-h-[350px] shrink-0"
-                                data-aos="fade-up"
-                                data-aos-delay="1100"
-                                data-aos-once="false"
-                                data-aos-easing="ease-out-cubic"
-                                data-aos-duration="600"
-                            >
-                                <div
-                                    className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[3deg] transition-all duration-700 animate-float"
-                                    style={{ backgroundColor: "#E9E0CF" }}
-                                >
-                                    <div className="text-center flex flex-col justify-around h-full">
-                                        <p className="text-[16px] tracking-widest font-semibold uppercase mb-2">04</p>
-                                        <h3 className="text-xl md:text-2xl font-extrabold uppercase leading-tight">
-                                            Wachstum &amp; Anzeigen
-                                        </h3>
-                                        <img 
-                                            src="/assets/images/home/flower.png" 
-                                            alt="Icon" 
-                                            className="mx-auto my-3 h-15 w-15" 
-                                            data-aos="zoom-in"
-                                            data-aos-delay="1150"
-                                            data-aos-once="false"
-                                        />
-                                        <p className="font-[500] leading-relaxed">
-                                            Steigern Sie Sichtbarkeit und Rendite durch intelligente, datengesteuerte Kampagnen.
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                    </section>
-                    {/* cards section */}
+          {/* cards section */}
+          <section className="mt-10 md:my-14">
+            <div className="mx-auto flex flex-wrap md:flex-row items-stretch justify-center gap-6 md:gap-8 lg:gap-4">
+              {/* Card 1 - Appears earlier on mobile */}
+              <motion.article
+                className="w-full md:w-[260px] lg:w-[290px] min-h-[350px] shrink-0"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{
+                  opacity: shouldAnimate(50, 30) ? 1 : 0,
+                  y: shouldAnimate(50, 30) ? 0 : 50,
+                }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                <div
+                  className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[-3deg] transition-all duration-700 animate-float"
+                  style={{ backgroundColor: "#FFECEE" }}
+                >
+                  <div className="text-center flex flex-col justify-around h-full items-center">
+                    <p className="text-[16px] tracking-widest font-semibold uppercase mb-2">01</p>
+                    <h3 className="text-xl md:text-2xl font-extrabold uppercase leading-tight">Markenidentität</h3>
+                    <img src="/assets/images/home/bulb.png" alt="Icon" className="mx-auto my-3 h-15 w-15" />
+                    <p className="font-[500] leading-relaxed">
+                      Wir helfen Marken dabei, ihre Stimme und visuelle Elemente zu finden, die wirklich Bestand haben.
+                    </p>
+                  </div>
                 </div>
-            </div>
-            {/* card banner section */}
+              </motion.article>
 
-            {/* Night Gros */}
-            <section 
-                className="bg-[#F9E9EA] rounded-3xl mt-16 md:mt-24"
-                data-aos="fade-up"
-                data-aos-delay="1200"
-                data-aos-once="false"
-            >
-                <div className="container mx-auto px-6 py-12 md:py-16">
-                    <div className="flex flex-col md:flex-row items-center gap-10 md:gap-12">
-                        {/* Left: Headline + Copy */}
-                        <div className="w-full md:w-1/2">
-                            <h1 
-                                className="text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase leading-tight text-[var(--text-color)]"
-                                data-aos="fade-up"
-                                data-aos-delay="1300"
-                                data-aos-once="false"
-                            >
-                                {h_1}
-                            </h1>
-                            <h1 
-                                className="text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase leading-tight text-[var(--text-color)]"
-                                data-aos="fade-up"
-                                data-aos-delay="1400"
-                                data-aos-once="false"
-                            >
-                                {h_2}
-                            </h1>
-                            <h1 
-                                className="text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase leading-tight text-[var(--text-color)]"
-                                data-aos="fade-up"
-                                data-aos-delay="1500"
-                                data-aos-once="false"
-                            >
-                                {h_3}
-                            </h1>
-
-                            <p 
-                                className="mt-6 text-[15px] md:text-base font-[500] leading-relaxed text-[var(--text-color)]"
-                                data-aos="fade-up"
-                                data-aos-delay="1600"
-                                data-aos-once="false"
-                            >
-                                {description}
-                            </p>
-
-                            <ul className="mt-6 space-y-3 text-[15px] font-[600] md:text-base text-[var(--text-color)]">
-                                {bullets.map((item, index) => {
-                                    return (
-                                        <li 
-                                            key={index} 
-                                            className="flex gap-3"
-                                            data-aos="fade-up"
-                                            data-aos-delay={1700 + (index * 100)}
-                                            data-aos-once="false"
-                                        >
-                                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--text-color)]"></span>
-                                            <span>
-                                                {item}
-                                            </span>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                        </div>
-
-                        {/* Right: Image + doodle */}
-                        <div 
-                            className="w-full h-[550px] md:w-[40%] relative rounded-3xl overflow-hidden"
-                            data-aos="fade-up"
-                            data-aos-delay="1800"
-                            data-aos-once="false"
-                        >
-                            <img src={imgUrl} className="h-[100%] w-[100%] object-[100%]" alt="" />
-                        </div>
-                    </div>
+              {/* Card 2 */}
+              <motion.article
+                className="w-full md:w-[260px] lg:w-[290px] min-h-[350px] shrink-0"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{
+                  opacity: shouldAnimate(55, 40) ? 1 : 0,
+                  y: shouldAnimate(55, 40) ? 0 : 50,
+                }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                <div
+                  className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[2deg] transition-all duration-700 animate-float"
+                  style={{ backgroundColor: "#EDE4D6" }}
+                >
+                  <div className="text-center flex flex-col justify-around h-full">
+                    <p className="text-[16px] tracking-widest font-semibold uppercase mb-2">02</p>
+                    <h3 className="text-xl md:text-2xl font-extrabold uppercase leading-tight">Web-Erlebnis</h3>
+                    <img src="/assets/images/home/Web-Erlebnis.png" alt="Icon" className="mx-auto my-3 h-15 w-15" />
+                    <p className="font-[500] leading-relaxed">
+                      Schnelle und ansprechende Websites erstellen, die Menschen zum Handeln bewegen.
+                    </p>
+                  </div>
                 </div>
-            </section>
-            {/* Night Gros */}
+              </motion.article>
 
-            <div 
-                className="lg:h-[500px] lg:mt-[100px]"
-                data-aos="fade-up"
-                data-aos-delay="1900"
-                data-aos-once="false"
-            >
-                <img src="/assets/images/home/banner.jpg" className="h-[100%] w-[100%] lg:object-contain" alt="" />
+              {/* Card 3 */}
+              <motion.article
+                className="w-full md:w-[260px] lg:w-[290px] min-h-[350px] shrink-0"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{
+                  opacity: shouldAnimate(60, 50) ? 1 : 0,
+                  y: shouldAnimate(60, 50) ? 0 : 50,
+                }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                <div
+                  className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[-1.5deg] transition-all duration-700 animate-float"
+                  style={{ backgroundColor: "#FFE8F0" }}
+                >
+                  <div className="text-center flex flex-col justify-around h-full">
+                    <p className="text-[16px] tracking-widest font-semibold uppercase mb-2">03</p>
+                    <h3 className="text-xl md:text-2xl font-extrabold uppercase leading-tight">
+                      Inhalt &amp; Bewegung
+                    </h3>
+                    <img src="/assets/images/home/diamond.png" alt="Icon" className="mx-auto my-3 h-15 w-15" />
+                    <p className="font-[500] leading-relaxed">
+                      Geschichten schaffen, die verbinden, inspirieren und in Erinnerung bleiben.
+                    </p>
+                  </div>
+                </div>
+              </motion.article>
+
+              {/* Card 4 */}
+              <motion.article
+                className="w-full md:w-[260px] lg:w-[290px] min-h-[350px] shrink-0"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{
+                  opacity: shouldAnimate(65, 65) ? 1 : 0,
+                  y: shouldAnimate(65, 65) ? 0 : 50,
+                }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                <div
+                  className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[3deg] transition-all duration-700 animate-float"
+                  style={{ backgroundColor: "#E9E0CF" }}
+                >
+                  <div className="text-center flex flex-col justify-around h-full">
+                    <p className="text-[16px] tracking-widest font-semibold uppercase mb-2">04</p>
+                    <h3 className="text-xl md:text-2xl font-extrabold uppercase leading-tight">
+                      Wachstum &amp; Anzeigen
+                    </h3>
+                    <img src="/assets/images/home/flower.png" alt="Icon" className="mx-auto my-3 h-15 w-15" />
+                    <p className="font-[500] leading-relaxed">
+                      Steigern Sie Sichtbarkeit und Rendite durch intelligente, datengesteuerte Kampagnen.
+                    </p>
+                  </div>
+                </div>
+              </motion.article>
+            </div>
+          </section>
+          {/* cards section */}
+        </div>
+      </div>
+      {/* card banner section */}
+
+      {/* Night Gros - Improved Responsive Animation */}
+      <section ref={nightGrosRef} className="bg-[#F9E9EA] rounded-3xl mt-16 md:mt-24">
+        <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16">
+          <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-12">
+            {/* Left: Headline + Copy */}
+            <div className="w-full md:w-1/2">
+              <motion.h1 
+                className="text-2xl sm:text-4xl md:text-6xl font-extrabold uppercase leading-tight text-[var(--text-color)]"
+                initial={{ opacity: 0, y: isMobile ? 20 : 30 }}
+                animate={{
+                  opacity: shouldShowText ? 1 : 0,
+                  y: shouldShowText ? 0 : (isMobile ? 20 : 30),
+                }}
+                transition={{ duration: isMobile ? 0.4 : 0.6, ease: "easeOut", delay: isMobile ? 0 : 0.1 }}
+              >
+                {h_1}
+              </motion.h1>
+              
+              <motion.h1 
+                className="text-2xl sm:text-4xl md:text-6xl font-extrabold uppercase leading-tight text-[var(--text-color)] mt-2"
+                initial={{ opacity: 0, y: isMobile ? 20 : 30 }}
+                animate={{
+                  opacity: shouldShowText ? 1 : 0,
+                  y: shouldShowText ? 0 : (isMobile ? 20 : 30),
+                }}
+                transition={{ duration: isMobile ? 0.4 : 0.6, ease: "easeOut", delay: isMobile ? 0.1 : 0.2 }}
+              >
+                {h_2}
+              </motion.h1>
+              
+              <motion.h1 
+                className="text-2xl sm:text-4xl md:text-6xl font-extrabold uppercase leading-tight text-[var(--text-color)] mt-2"
+                initial={{ opacity: 0, y: isMobile ? 20 : 30 }}
+                animate={{
+                  opacity: shouldShowText ? 1 : 0,
+                  y: shouldShowText ? 0 : (isMobile ? 20 : 30),
+                }}
+                transition={{ duration: isMobile ? 0.4 : 0.6, ease: "easeOut", delay: isMobile ? 0.2 : 0.3 }}
+              >
+                {h_3}
+              </motion.h1>
+
+              <motion.p 
+                className="mt-4 sm:mt-6 text-sm sm:text-[15px] md:text-base font-[500] leading-relaxed text-[var(--text-color)]"
+                initial={{ opacity: 0, y: isMobile ? 15 : 20 }}
+                animate={{
+                  opacity: shouldShowText ? 1 : 0,
+                  y: shouldShowText ? 0 : (isMobile ? 15 : 20),
+                }}
+                transition={{ duration: isMobile ? 0.4 : 0.6, ease: "easeOut", delay: isMobile ? 0.3 : 0.4 }}
+              >
+                {description}
+              </motion.p>
+
+              <motion.ul 
+                className="mt-4 sm:mt-6 space-y-2 sm:space-y-3 text-sm sm:text-[15px] font-[600] md:text-base text-[var(--text-color)]"
+                initial={{ opacity: 0, x: isMobile ? -10 : -20 }}
+                animate={{
+                  opacity: shouldShowText ? 1 : 0,
+                  x: shouldShowText ? 0 : (isMobile ? -10 : -20),
+                }}
+                transition={{ duration: isMobile ? 0.4 : 0.6, ease: "easeOut", delay: isMobile ? 0.4 : 0.5 }}
+              >
+                {bullets.map((item, index) => {
+                  return (
+                    <motion.li 
+                      key={index} 
+                      className="flex gap-3 items-start"
+                      initial={{ opacity: 0, x: isMobile ? -5 : -10 }}
+                      animate={{
+                        opacity: shouldShowText ? 1 : 0,
+                        x: shouldShowText ? 0 : (isMobile ? -5 : -10),
+                      }}
+                      transition={{ 
+                        duration: isMobile ? 0.3 : 0.4, 
+                        ease: "easeOut", 
+                        delay: isMobile ? (0.5 + (index * 0.05)) : (0.6 + (index * 0.1)) 
+                      }}
+                    >
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--text-color)] flex-shrink-0"></span>
+                      <span className="leading-tight">{item}</span>
+                    </motion.li>
+                  )
+                })}
+              </motion.ul>
             </div>
 
-            {/* Custom CSS for floating animation */}
-            <style jsx>{`
-                @keyframes float {
-                    0%, 100% {
-                        transform: translateY(0) rotate(var(--rotation, 0deg));
-                    }
-                    50% {
-                        transform: translateY(-10px) rotate(var(--rotation, 0deg));
-                    }
-                }
-                .animate-float {
-                    animation: float 3s ease-in-out infinite;
-                }
-            `}</style>
-        </>
-    )
+            {/* Right: Image + doodle */}
+            <motion.div 
+              className="w-full h-[300px] sm:h-[400px] md:h-[550px] md:w-[40%] relative rounded-3xl overflow-hidden mt-6 md:mt-0"
+              initial={{ 
+                opacity: 0, 
+                scale: isMobile ? 0.95 : 0.9, 
+                x: isMobile ? 30 : 50 
+              }}
+              animate={{
+                opacity: shouldShowImage ? 1 : 0,
+                scale: shouldShowImage ? 1 : (isMobile ? 0.95 : 0.9),
+                x: shouldShowImage ? 0 : (isMobile ? 30 : 50),
+              }}
+              transition={{ 
+                duration: isMobile ? 0.5 : 0.8, 
+                ease: "easeOut", 
+                delay: isMobile ? 0.2 : 0.3 
+              }}
+            >
+              <img 
+                src={imgUrl || "/placeholder.svg"} 
+                className="h-[100%] w-[100%] object-cover" 
+                alt="Night Gros" 
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+      {/* Night Gros */}
+
+      <div className="lg:h-[500px] lg:mt-[100px]">
+        <img src="/assets/images/home/banner.jpg" className="h-[100%] w-[100%] lg:object-contain" alt="" />
+      </div>
+
+      {/* Custom CSS for floating animation */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0) rotate(var(--rotation, 0deg));
+          }
+          50% {
+            transform: translateY(-10px) rotate(var(--rotation, 0deg));
+          }
+        }
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+      `}</style>
+    </>
+  )
 }
 
 export default FlexibleModern
