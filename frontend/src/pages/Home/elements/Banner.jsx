@@ -65,7 +65,7 @@ const Banner = ({ homeBannerData, homeMainHeading }) => {
                 </h1>
                 <img
                   src="/assets/images/home/heading_vector.png"
-                  className="hidden lg:block w-[100px] object-contain"
+                  className="hidden lg:block w-[100px] object-cover"
                   alt=""
                   data-aos="zoom-in"
                   data-aos-delay="300"
@@ -77,7 +77,7 @@ const Banner = ({ homeBannerData, homeMainHeading }) => {
                 <img
                   src={imgUrl || "/placeholder.svg"}
                   alt=""
-                  className="w-[90%] md:h-[600px] md:w-[48%] lg:w-[80%] object-cover"
+                  className="w-[90%] md:h-[600px] md:w-[48%] lg:w-[80%] lg:object-cover object-contain"
                   data-aos="fade-right"
                   data-aos-delay="200"
                   data-aos-once="false"
