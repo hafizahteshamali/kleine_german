@@ -168,7 +168,7 @@ const Creat_Effic_Effici = ({ processSteps }) => {
       {/* Animated Heading */}
       <AnimatedText
         text={text1}
-        className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight sm:leading-snug"
+        className="text-xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[40px] sm:leading-snug"
       />
 
       {/* Supporting Paragraphs */}

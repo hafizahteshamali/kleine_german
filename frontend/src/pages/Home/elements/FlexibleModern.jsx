@@ -83,9 +83,25 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
 
   return (
     <>
-      {/* card banner section */}
-      <div ref={sectionRef} className="bg-[var(--text-color)] rounded-4xl mt-[100px] p-5">
+      {/* card banner section - Smooth bottom to top animation */}
+      <motion.div 
+        ref={sectionRef}
+        className="bg-[var(--text-color)] rounded-4xl mt-[100px] p-5 overflow-hidden"
+        initial={{ opacity: 0, y: 100, height: 0 }}
+        animate={{
+          opacity: shouldAnimate(10, 5) ? 1 : 0,
+          y: shouldAnimate(10, 5) ? 0 : 100,
+          height: shouldAnimate(10, 5) ? "auto" : 0
+        }}
+        transition={{ 
+          duration: 0.8, 
+          ease: "easeOut",
+          opacity: { duration: 0.6 },
+          y: { duration: 0.8 }
+        }}
+      >
         <div className="container mx-auto h-auto">
+          {/* Background gradient animation */}
           <motion.div
             className="absolute inset-0 bg-gradient-to-t from-[#ff6b6b] to-[var(--text-color)] rounded-4xl pointer-events-none"
             initial={{ scaleY: 0, originY: 1 }}
@@ -93,7 +109,7 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
               scaleY: shouldAnimate(30, 20) ? 1 : 0,
               originY: 1,
             }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             style={{
               position: "absolute",
               top: 0,
@@ -106,7 +122,17 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
 
           {/* heading section */}
           <div className="w-full mt-[100px] flex flex-col justify-center gap-2 items-center relative z-10">
-            <p className="text-center text-[#FFEEEE] font-[600]">Dienstleistungen</p>
+            <motion.p 
+              className="text-center text-[#FFEEEE] font-[600]"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{
+                opacity: shouldAnimate(15, 10) ? 1 : 0,
+                y: shouldAnimate(15, 10) ? 0 : 30,
+              }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+            >
+              Dienstleistungen
+            </motion.p>
 
             <motion.div
               className="flex justify-center items-end lg:rotate-[1deg] lg:origin-right"
@@ -115,16 +141,30 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
                 opacity: shouldAnimate(20, 15) ? 1 : 0,
                 x: shouldAnimate(20, 15) ? 0 : -50,
               }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
             >
-              <img
+              <motion.img
                 src="/assets/images/home/flexible-head1-l-img.png"
                 className="h-[100px] w-[100px] object-contain hidden lg:block"
                 alt=""
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{
+                  opacity: shouldAnimate(20, 15) ? 1 : 0,
+                  scale: shouldAnimate(20, 15) ? 1 : 0.8,
+                }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
               />
-              <h1 className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl text-[#FFEEEE] uppercase">
+              <motion.h1 
+                className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl text-[#FFEEEE] uppercase"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{
+                  opacity: shouldAnimate(20, 15) ? 1 : 0,
+                  y: shouldAnimate(20, 15) ? 0 : 50,
+                }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+              >
                 {head1}
-              </h1>
+              </motion.h1>
             </motion.div>
 
             <motion.div
@@ -134,11 +174,19 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
                 opacity: shouldAnimate(30, 20) ? 1 : 0,
                 x: shouldAnimate(30, 20) ? 0 : -50,
               }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
             >
-              <h1 className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl text-[#FFEEEE] uppercase">
+              <motion.h1 
+                className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl text-[#FFEEEE] uppercase"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{
+                  opacity: shouldAnimate(30, 20) ? 1 : 0,
+                  y: shouldAnimate(30, 20) ? 0 : 50,
+                }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
+              >
                 {head2}
-              </h1>
+              </motion.h1>
             </motion.div>
 
             <motion.div
@@ -148,20 +196,40 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
                 opacity: shouldAnimate(40, 25) ? 1 : 0,
                 x: shouldAnimate(40, 25) ? 0 : -50,
               }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
             >
-              <img
+              <motion.img
                 src="/assets/images/home/ellips.png"
                 className="h-[60px] w-[60px] object-contain hidden lg:block"
                 alt=""
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{
+                  opacity: shouldAnimate(40, 25) ? 1 : 0,
+                  scale: shouldAnimate(40, 25) ? 1 : 0.8,
+                }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
               />
-              <h1 className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl text-[#FFEEEE] uppercase">
+              <motion.h1 
+                className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl text-[#FFEEEE] uppercase"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{
+                  opacity: shouldAnimate(40, 25) ? 1 : 0,
+                  y: shouldAnimate(40, 25) ? 0 : 50,
+                }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
+              >
                 {head3}
-              </h1>
-              <img
+              </motion.h1>
+              <motion.img
                 src="/assets/images/home/red-start.png"
                 className="h-[100px] w-[100px] object-contain hidden lg:block"
                 alt=""
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{
+                  opacity: shouldAnimate(40, 25) ? 1 : 0,
+                  scale: shouldAnimate(40, 25) ? 1 : 0.8,
+                }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
               />
             </motion.div>
           </div>
@@ -178,7 +246,7 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
                   opacity: shouldAnimate(50, 30) ? 1 : 0,
                   y: shouldAnimate(50, 30) ? 0 : 50,
                 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
               >
                 <div
                   className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[-3deg] transition-all duration-700 animate-float"
@@ -203,7 +271,7 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
                   opacity: shouldAnimate(55, 40) ? 1 : 0,
                   y: shouldAnimate(55, 40) ? 0 : 50,
                 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
               >
                 <div
                   className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[2deg] transition-all duration-700 animate-float"
@@ -228,7 +296,7 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
                   opacity: shouldAnimate(60, 50) ? 1 : 0,
                   y: shouldAnimate(60, 50) ? 0 : 50,
                 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
               >
                 <div
                   className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[-1.5deg] transition-all duration-700 animate-float"
@@ -255,7 +323,7 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
                   opacity: shouldAnimate(65, 65) ? 1 : 0,
                   y: shouldAnimate(65, 65) ? 0 : 50,
                 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
               >
                 <div
                   className="rounded-[28px] h-full shadow-lg p-6 md:p-7 lg:rotate-[3deg] transition-all duration-700 animate-float"
@@ -277,7 +345,7 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
           </section>
           {/* cards section */}
         </div>
-      </div>
+      </motion.div>
       {/* card banner section */}
 
       {/* Night Gros - Improved Responsive Animation */}
