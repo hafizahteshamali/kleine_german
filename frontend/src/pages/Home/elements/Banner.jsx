@@ -14,7 +14,7 @@ const Banner = ({ homeBannerData, homeMainHeading }) => {
   const { scrollProgress, elementRef } = useScrollProgress()
   const showHead1 = scrollProgress >= 20
   const showHead2 = scrollProgress >= 40
-  const showHead3 = scrollProgress >= 60
+  const showHead3 = scrollProgress >= 50
 
   const showThirdHeading = scrollProgress >= 70
   const showThirdParagraph = scrollProgress >= 80
@@ -52,11 +52,11 @@ const Banner = ({ homeBannerData, homeMainHeading }) => {
       <div className="mt-[150px]">
         <div className="container mx-auto">
           {/* first section */}
-          <div className="min-h-[600px] w-full flex flex-col lg:flex-row justify-center items-center">
-            <div className="min-h-[500px] w-full lg:w-[75%] flex flex-col justify-start items-end">
-              <div className="hidden lg:flex justify-center w-full lg:justify-around items-center gap-5 lg:w-[70%]">
+          <div className="w-full flex flex-col lg:flex-row justify-center items-center">
+            <div className=" w-full flex flex-col justify-start items-end">
+              <div className="hidden lg:flex justify-center w-full lg:justify-end items-center lg:w-[70%] mr-15">
                 <h1
-                  className="text-6xl lg:text-8xl font-heirloom text-center"
+                  className="text-6xl lg:text-9xl font-heirloom text-center mb-0"
                   data-aos="fade-down"
                   data-aos-delay="100"
                   data-aos-once="false"
@@ -65,7 +65,7 @@ const Banner = ({ homeBannerData, homeMainHeading }) => {
                 </h1>
                 <img
                   src="/assets/images/home/heading_vector.png"
-                  className="h-[100px] hidden lg:block w-[100px] object-contain"
+                  className="hidden lg:block w-[100px] object-contain"
                   alt=""
                   data-aos="zoom-in"
                   data-aos-delay="300"
@@ -77,7 +77,7 @@ const Banner = ({ homeBannerData, homeMainHeading }) => {
                 <img
                   src={imgUrl || "/placeholder.svg"}
                   alt=""
-                  className="min-h-[400px] w-[90%] md:h-[550px] md:w-[48%] lg:w-full object-cover"
+                  className="w-[90%] md:h-[600px] md:w-[48%] lg:w-[80%] object-cover"
                   data-aos="fade-right"
                   data-aos-delay="200"
                   data-aos-once="false"
@@ -92,15 +92,15 @@ const Banner = ({ homeBannerData, homeMainHeading }) => {
                     {heading1}
                   </h1>
 
-                  <h1 className="text-6xl lg:text-8xl" data-aos="fade-up" data-aos-delay="150" data-aos-once="false">
+                  <h1 className="text-6xl lg:text-9xl" data-aos="fade-up" data-aos-delay="150" data-aos-once="false">
                     {heading2}
                   </h1>
 
-                  <h1 className="text-6xl lg:text-8xl" data-aos="fade-up" data-aos-delay="200" data-aos-once="false">
+                  <h1 className="text-6xl lg:text-9xl" data-aos="fade-up" data-aos-delay="200" data-aos-once="false">
                     {heading3}
                   </h1>
 
-                  <h1 className="text-6xl lg:text-8xl" data-aos="fade-up" data-aos-delay="250" data-aos-once="false">
+                  <h1 className="text-6xl lg:text-9xl" data-aos="fade-up" data-aos-delay="250" data-aos-once="false">
                     {heading4}
                   </h1>
 
@@ -146,14 +146,14 @@ const Banner = ({ homeBannerData, homeMainHeading }) => {
           {/* section second */}
           <div className="w-full mt-[100px] flex flex-col justify-center items-center" ref={elementRef}>
             <motion.div
-              className="flex justify-center items-center lg:rotate-[-5deg] lg:origin-right"
+              className="flex justify-center items-center lg:rotate-[-2deg] lg:origin-right"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={showHead1 ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               <img src="/assets/images/home/hl.png" className="hidden lg:block" alt="" />
               <motion.h1
-                className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl"
+                className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={showHead1 ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
@@ -179,7 +179,7 @@ const Banner = ({ homeBannerData, homeMainHeading }) => {
                 alt=""
               />
               <motion.h1
-                className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl"
+                className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={showHead2 ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
@@ -189,7 +189,7 @@ const Banner = ({ homeBannerData, homeMainHeading }) => {
             </motion.div>
 
             <motion.h1
-              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl lg:rotate-[-1deg]"
+              className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl lg:rotate-[1deg]"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={showHead3 ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.6, ease: "easeOut" }}

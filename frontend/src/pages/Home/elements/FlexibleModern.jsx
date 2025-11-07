@@ -121,9 +121,9 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
           />
 
           {/* heading section */}
-          <div className="w-full mt-[100px] flex flex-col justify-center gap-2 items-center relative z-10">
+          <div className="w-full mt-[100px] flex flex-col justify-center gap-3 items-center relative z-10">
             <motion.p 
-              className="text-center text-[#FFEEEE] font-[600]"
+              className="text-center text-[#FFEEEE] font-[600] text-xl"
               initial={{ opacity: 0, y: 30 }}
               animate={{
                 opacity: shouldAnimate(15, 10) ? 1 : 0,
@@ -155,7 +155,7 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
               />
               <motion.h1 
-                className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl text-[#FFEEEE] uppercase"
+                className="text-3xl text-center sm:text-5xl md:text-7xl lg:text-8xl text-[#FFEEEE] uppercase"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{
                   opacity: shouldAnimate(20, 15) ? 1 : 0,
@@ -168,7 +168,7 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
             </motion.div>
 
             <motion.div
-              className="flex justify-center items-center lg:rotate-[.5deg] lg:origin-right"
+              className="flex justify-center items-center lg:rotate-[.5deg] lg:origin-right w-full"
               initial={{ opacity: 0, x: -50 }}
               animate={{
                 opacity: shouldAnimate(30, 20) ? 1 : 0,
@@ -177,7 +177,7 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
             >
               <motion.h1 
-                className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl text-[#FFEEEE] uppercase"
+                className="text-3xl text-center lg:text-left sm:text-5xl md:text-7xl lg:text-[90px] text-[#FFEEEE] uppercase"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{
                   opacity: shouldAnimate(30, 20) ? 1 : 0,
@@ -190,7 +190,7 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
             </motion.div>
 
             <motion.div
-              className="flex justify-center items-center lg:rotate-[1deg] lg:origin-right"
+              className="flex justify-center items-center lg:rotate-[0deg] lg:origin-right"
               initial={{ opacity: 0, x: -50 }}
               animate={{
                 opacity: shouldAnimate(40, 25) ? 1 : 0,
@@ -210,7 +210,7 @@ const FlexibleModern = ({ flexibleModern, flexModernData }) => {
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
               />
               <motion.h1 
-                className="text-2xl text-center sm:text-5xl md:text-7xl lg:text-7xl text-[#FFEEEE] uppercase"
+                className="text-[28px] text-center sm:text-5xl md:text-7xl lg:text-8xl text-[#FFEEEE] uppercase"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{
                   opacity: shouldAnimate(40, 25) ? 1 : 0,
